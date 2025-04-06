@@ -1,0 +1,47 @@
+/*
+ * This is a manifest file that'll be compiled into application.css.
+ *
+ * With Propshaft, assets are served efficiently without preprocessing steps. You can still include
+ * application-wide styles in this file, but keep in mind that CSS precedence will follow the standard
+ * cascading order, meaning styles declared later in the document or manifest will override earlier ones,
+ * depending on specificity.
+ *
+ * Consider organizing styles into separate files for maintainability.
+ */
+
+/* Theme utility classes for easy use with Tailwind */
+.bg-paper { background-color: hsl(var(--color-paper)); }
+.bg-ink { background-color: hsl(var(--color-ink)); }
+.bg-accent { background-color: hsl(var(--color-accent)); }
+.bg-secondary { background-color: hsl(var(--color-secondary)); }
+.bg-terminal { background-color: hsl(var(--color-terminal)); }
+.bg-glitch { background-color: hsl(var(--color-glitch)); }
+.bg-background { background-color: hsl(var(--color-background)); }
+
+.text-paper { color: hsl(var(--color-paper)); }
+.text-ink { color: hsl(var(--color-ink)); }
+.text-accent { color: hsl(var(--color-accent)); }
+.text-secondary { color: hsl(var(--color-secondary)); }
+.text-terminal { color: hsl(var(--color-terminal)); }
+.text-glitch { color: hsl(var(--color-glitch)); }
+.text-muted { color: hsl(var(--color-muted)); }
+.text-voice-first { color: hsl(var(--color-voice-first)); }
+.text-voice-second { color: hsl(var(--color-voice-second)); }
+.text-voice-glitch { color: hsl(var(--color-voice-glitch)); }
+
+.font-heading { font-family: var(--font-heading); }
+.font-body { font-family: var(--font-body); }
+.font-mono { font-family: var(--font-mono); }
+
+.border-accent { border-color: hsl(var(--color-accent)); }
+.border-secondary { border-color: hsl(var(--color-secondary)); }
+.border-ink { border-color: hsl(var(--color-ink)); }
+.border-terminal { border-color: hsl(var(--color-terminal)); }
+.border-glitch { border-color: hsl(var(--color-glitch)); }
+
+/* Retro effects utilities */
+.retro-glow { text-shadow: 0 0 5px currentColor; }
+.pixel-text { font-family: var(--font-mono); letter-spacing: 0.1em; }
+.terminal-border { border: 2px solid hsl(var(--color-terminal)); padding: 1rem; }
+
+

@@ -1,0 +1,99 @@
+<div class="bg-background min-h-screen">
+  <!-- Mobile menu toggle -->
+  <button id="mobile-menu-toggle" class="fixed top-4 right-4 z-50 p-2 rounded bg-accent text-paper font-mono text-sm md:hidden">
+    MENU
+  </button>
+
+  <!-- Sidebar navigation -->
+  <aside id="sidebar" class="sidebar">
+    <div class="bbs-header">EXPLORE THE ZINE</div>
+    <nav class="mt-6">
+      <a href="#preface" class="zine-nav-link"><span class="text-accent">01.</span> PREFACE</a>
+      <a href="#prologue" class="zine-nav-link"><span class="text-accent">02.</span> PROLOGUE</a>
+      <a href="#sutra" class="zine-nav-link"><span class="text-accent">03.</span> SUTRA</a>
+      <a href="#manifesto" class="zine-nav-link"><span class="text-accent">04.</span> MANIFESTO</a>
+      <a href="#glitch" class="zine-nav-link"><span class="text-accent">05.</span> GLITCH</a>
+      <a href="#epilogue" class="zine-nav-link"><span class="text-accent">06.</span> EPILOGUE</a>
+    </nav>
+    
+    <!-- ASCII art for sidebar -->
+    <div class="ascii-art mt-8">
+  _   _  _____     ___  
+ | \ | |/ _ \ \   / / | 
+ |  \| | | | \ \ / /| | 
+ | |\  | |_| |\ V / | | 
+ |_| \_|\___/  \_/  |_| 
+    </div>
+  </aside>
+
+  <!-- Main content -->
+  <main class="main-content">
+    <header class="text-center mb-12">
+      <h1 class="zine-title glitch retro-glow" data-text="NO ALIGNMENT / NO NON-ALIGNMENT">
+        NO ALIGNMENT / NO NON-ALIGNMENT
+      </h1>
+      <div class="pixel-border mx-auto w-2/3 mb-4"></div>
+      <p class="text-muted font-mono text-sm">A retro-futurist web zine</p>
+    </header>
+
+    <section id="preface" class="zine-section">
+      <h2 class="zine-heading">PREFACE <span class="blink terminal-text" style="font-size: 1rem;">_</span></h2>
+      <%= render partial: 'home/webzine/preface' %>
+    </section>
+    
+    <section id="prologue" class="zine-section scanline">
+      <h2 class="zine-heading">PROLOGUE <span class="section-number">[01/06]</span></h2>
+      <%= render partial: 'home/webzine/prologue' %>
+    </section>
+    
+    <section id="sutra" class="zine-section noise">
+      <h2 class="zine-heading terminal-text">SUTRA <span class="section-number">[02/06]</span></h2>
+      <%= render partial: 'home/webzine/sutra' %>
+    </section>
+    
+    <section id="manifesto" class="zine-section">
+      <h2 class="zine-heading">MANIFESTO <span class="section-number">[03/06]</span></h2>
+      <%= render partial: 'home/webzine/manifesto' %>
+    </section>
+    
+    <section id="glitch" class="zine-section noise">
+      <h2 class="zine-heading glitch" data-text="GLITCH">GLITCH <span class="section-number">[04/06]</span></h2>
+      <%= render partial: 'home/webzine/glitch' %>
+    </section>
+    
+    <section id="epilogue" class="zine-section screen-frame">
+      <h2 class="zine-heading">EPILOGUE <span class="section-number">[05/06]</span></h2>
+      <%= render partial: 'home/webzine/epilogue' %>
+    </section>
+    
+    <footer class="text-center py-8 text-muted">
+      <div class="pixel-border mb-4 mx-auto w-1/3"></div>
+      <p class="text-sm font-mono">&copy; <%= Date.today.year %> No Alignment Zine</p>
+    </footer>
+  </main>
+</div>
+
+<link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+    const sidebar = document.getElementById('sidebar');
+    
+    mobileMenuToggle.addEventListener('click', function() {
+      sidebar.classList.toggle('open');
+      mobileMenuToggle.textContent = sidebar.classList.contains('open') ? 'CLOSE' : 'MENU';
+    });
+    
+    // Close menu when clicking a link on mobile
+    const navLinks = document.querySelectorAll('.zine-nav-link');
+    navLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        if (window.innerWidth < 768) {
+          sidebar.classList.remove('open');
+          mobileMenuToggle.textContent = 'MENU';
+        }
+      });
+    });
+  });
+</script>

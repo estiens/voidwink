@@ -1,0 +1,149 @@
+@import "tailwindcss/preflight";
+@import "tailwindcss/utilities";
+@import "./typography.css";
+@import "./effects.css";
+@import "./bbs.css";
+
+@theme {
+  --color-black: 0 0% 0%;
+  --color-white: 0 0% 100%;
+  --color-paper: 40 30% 95%;
+  --color-ink: 240 10% 10%;
+  --color-accent: 355 80% 60%;
+  --color-secondary: 205 80% 40%;
+  --color-terminal: 120 63% 31%;
+  --color-glitch: 300 100% 50%;
+  
+  --font-retro: 'Courier Prime', monospace;
+  --font-display: 'Cormorant Garamond', serif;
+  --font-zine: 'Inter', sans-serif;
+}
+
+/* Base Styles */
+body {
+  line-height: 1.6;
+  overflow-x: hidden;
+  background-color: hsl(var(--color-background));
+  color: hsl(var(--color-ink));
+}
+
+/* Layout Components */
+.sidebar {
+  position: fixed;
+  width: var(--sidebar-width);
+  top: 0;
+  left: 0;
+  height: 100vh;
+  overflow-y: auto;
+  background-color: hsl(var(--color-paper));
+  border-right: var(--border-thick) solid hsl(var(--color-accent));
+  padding: 1.5rem;
+  z-index: 50;
+  box-shadow: var(--box-shadow);
+}
+
+.main-content {
+  margin-left: var(--sidebar-width);
+  padding: 2rem;
+  min-height: 100vh;
+  position: relative;
+  z-index: 10;
+  background-color: hsl(var(--color-background));
+  width: calc(100% - var(--sidebar-width));
+}
+
+.zine-section {
+  margin-bottom: 5rem;
+  padding: 2rem;
+  border-left: var(--border-thick) solid hsl(var(--color-accent));
+  position: relative;
+  box-shadow: var(--box-shadow);
+  position: relative;
+}
+
+/* Section-specific styling */
+#preface {
+  background-color: hsl(var(--color-preface-bg));
+  border-color: hsl(var(--color-preface-accent));
+}
+
+#prologue {
+  background-color: hsl(var(--color-prologue-bg));
+  border-color: hsl(var(--color-prologue-accent));
+}
+
+#sutra {
+  background-color: hsl(var(--color-sutra-bg));
+  border-color: hsl(var(--color-sutra-accent));
+}
+
+#manifesto {
+  background-color: hsl(var(--color-manifesto-bg));
+  border-color: hsl(var(--color-manifesto-accent));
+}
+
+#glitch {
+  background-color: hsl(var(--color-glitch-bg));
+  border-color: hsl(var(--color-glitch-accent));
+}
+
+#epilogue {
+  background-color: hsl(var(--color-epilogue-bg));
+  border-color: hsl(var(--color-epilogue-accent));
+}
+
+/* Narrator voice styles */
+.voice-first {
+  color: hsl(var(--color-voice-first));
+}
+
+.voice-second {
+  color: hsl(var(--color-voice-second));
+}
+
+.voice-glitch {
+  color: hsl(var(--color-voice-glitch));
+  font-style: italic;
+}
+
+/* Navigation */
+.zine-nav-link {
+  display: block;
+  padding: 0.75rem 1rem;
+  margin-bottom: 0.5rem;
+  color: hsl(var(--color-ink));
+  font-family: var(--font-mono);
+  border-bottom: var(--border-thin) solid transparent;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.zine-nav-link:hover,
+.zine-nav-link:focus {
+  border-bottom-color: hsl(var(--color-accent));
+  color: hsl(var(--color-accent));
+  background-color: hsla(var(--color-ink), 0.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+    transition: transform 0.3s ease;
+  }
+  
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  
+  .main-content {
+    margin-left: 0;
+    padding: 1rem;
+    width: 100%;
+  }
+
+  .zine-section {
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+  }
+}

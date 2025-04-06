@@ -1,0 +1,180 @@
+/* Core Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: hsl(var(--color-ink));
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+p {
+  margin-bottom: 1.5rem;
+}
+
+a {
+  color: hsl(var(--color-accent));
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.15em;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+}
+
+a:hover {
+  color: hsl(var(--color-secondary));
+  text-shadow: 0 0 8px hsla(var(--color-secondary), 0.5);
+}
+
+/* Specialty Typography */
+.zine-heading {
+  font-family: var(--font-heading);
+  font-size: 2.25rem;
+  font-weight: 700;
+  border-bottom: var(--border-thin) solid hsl(var(--color-accent));
+  margin-bottom: 1.5rem;
+  padding-bottom: 0.5rem;
+  color: hsl(var(--color-ink));
+  letter-spacing: 0.05em;
+}
+
+.zine-subhead {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  color: hsl(var(--color-accent));
+  font-style: italic;
+  margin-bottom: 1rem;
+  font-weight: 400;
+}
+
+.terminal-text {
+  font-family: var(--font-mono);
+  letter-spacing: 0.05em;
+  color: hsl(var(--color-terminal));
+}
+
+.zine-title {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.5rem;
+  font-size: 2.75rem;
+  text-shadow: 0 0 10px hsla(var(--color-accent), 0.5);
+}
+
+.callout {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-style: italic;
+  padding: 1.5rem;
+  border-left: var(--border-thick) solid hsl(var(--color-accent));
+  margin: 2rem 0;
+  background-color: hsla(var(--color-accent), 0.1);
+}
+
+.section-number {
+  font-size: 0.75rem;
+  color: hsl(var(--color-accent));
+  font-family: var(--font-mono);
+  margin-left: 0.5rem;
+  vertical-align: middle;
+}
+
+.caption {
+  font-style: italic;
+  font-size: 0.875rem;
+  color: hsl(var(--color-secondary));
+  margin-top: 0.5rem;
+}
+
+.retro-quote {
+  border-left: 3px dashed hsl(var(--color-accent));
+  padding: 1rem;
+  font-family: var(--font-mono);
+  margin: 1.5rem 0;
+  background-color: hsla(var(--color-accent), 0.1);
+}
+
+.ascii-art {
+  font-family: var(--font-mono);
+  white-space: pre;
+  font-size: 0.75rem;
+  line-height: 1.2;
+  color: hsl(var(--color-accent));
+  margin: 2rem auto;
+  text-align: center;
+}
+
+.typewriter {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 0.15em solid hsl(var(--color-accent));
+  animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+}
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: hsl(var(--color-accent)) }
+}
+
+.hand-drawn {
+  font-family: 'Comic Sans MS', cursive;
+  transform: rotate(-1deg);
+}
+
+/* Voice typography */
+.voice-terminal {
+  font-family: var(--font-mono);
+  color: hsl(var(--color-terminal));
+  letter-spacing: 0.05em;
+}
+
+.voice-first {
+  color: hsl(var(--color-voice-first));
+}
+
+.voice-second {
+  color: hsl(var(--color-voice-second));
+}
+
+.voice-glitch {
+  color: hsl(var(--color-voice-glitch));
+  font-style: italic;
+}
+
+/* Additional typography classes */
+.mono {
+  font-family: var(--font-mono);
+}
+
+.cursor {
+  display: inline-block;
+  width: 0.5em;
+  height: 1em;
+  background-color: currentColor;
+  animation: blink 1s step-end infinite;
+} 

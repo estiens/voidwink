@@ -1,0 +1,114 @@
+.bbs-box {
+    border: var(--border-thin) solid hsl(var(--color-accent));
+    background-color: hsl(var(--color-paper));
+    padding: 1.5rem;
+    box-shadow: var(--box-shadow);
+    position: relative;
+    overflow: hidden;
+  }
+  
+  .bbs-box::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+      0deg,
+      hsla(0, 0%, 0%, 0.1),
+      hsla(0, 0%, 0%, 0.1) 1px,
+      transparent 1px,
+      transparent 2px
+    );
+    pointer-events: none;
+    z-index: 1;
+  }
+  
+  .bbs-header {
+    background-color: hsl(var(--color-accent));
+    color: hsl(var(--color-paper));
+    font-family: var(--font-mono);
+    padding: 0.5rem 1rem;
+    text-transform: uppercase;
+    text-align: center;
+    letter-spacing: 0.1em;
+    margin-bottom: 1rem;
+    font-weight: 600;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+  
+  .bbs-menu {
+    border-left: var(--border-thin) solid hsl(var(--color-accent));
+    padding-left: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .bbs-menu-item {
+    padding: 0.5rem 0;
+    font-family: var(--font-mono);
+    color: hsl(var(--color-ink));
+    display: block;
+    transition: color 0.2s ease;
+  }
+  
+  .bbs-menu-item:hover {
+    color: hsl(var(--color-accent));
+  }
+  
+  .bbs-menu-item::before {
+    content: "→ ";
+    color: hsl(var(--color-accent));
+  }
+  
+  .screen-frame {
+    border: 6px solid #333;
+    border-radius: 4px;
+    padding: 1.5rem;
+    background: linear-gradient(to bottom, 
+      rgba(0,0,0,0.2),
+      rgba(0,0,0,0.1)
+    );
+    position: relative;
+    overflow: hidden;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .screen-frame::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(
+      ellipse at center,
+      transparent 60%,
+      rgba(0,0,0,0.3) 100%
+    );
+    pointer-events: none;
+  }
+  
+  .pixel-border {
+    height: 4px;
+    background-image: linear-gradient(
+      to right,
+      hsl(var(--color-accent)) 50%,
+      transparent 50%
+    );
+    background-size: 10px 4px;
+    background-repeat: repeat-x;
+    opacity: 0.8;
+  }
+
+  .mt-8 {
+    margin-top: 2rem;
+  }
+
+  .mt-6 {
+    margin-top: 1.5rem;
+  }
+
+  .mb-4 {
+    margin-bottom: 1rem;
+  }
