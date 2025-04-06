@@ -1,6 +1,11 @@
+/* Main Glitch Effect */
 .glitch {
   position: relative;
-  color: hsl(var(--color-ink));
+  color: hsl(var(--color-white));
+  text-shadow: 
+    0 0 2px hsl(var(--color-white)),
+    0 0 10px hsla(var(--color-accent), 0.5);
+  display: inline-block;
 }
 
 .glitch::before,
@@ -12,18 +17,24 @@
   width: 100%;
   height: 100%;
   clip: rect(0, 0, 0, 0);
+  pointer-events: none;
+  opacity: 0.8;
 }
 
 .glitch::before {
-  left: 2px;
-  text-shadow: -1px 0 hsl(var(--color-accent));
-  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+  text-shadow: -2px 0 hsl(var(--color-accent));
+  animation: glitch-anim-1 3.5s infinite linear alternate-reverse;
 }
 
 .glitch::after {
-  left: -2px;
-  text-shadow: 1px 0 hsl(var(--color-secondary));
-  animation: glitch-anim-2 3s infinite linear alternate-reverse;
+  text-shadow: 2px 0 hsl(var(--color-glitch));
+  animation: glitch-anim-2 2.5s infinite linear alternate-reverse;
+}
+
+.glitch.active-glitch::before,
+.glitch.active-glitch::after {
+  animation-duration: 0.2s !important;
+  animation-timing-function: steps(2, end) !important;
 }
 
 @keyframes glitch-anim-1 {
@@ -54,11 +65,12 @@
   100% { clip: rect(82px, 9999px, 67px, 0); }
 }
 
-.scanline {
+/* .scanline {
   position: relative;
   overflow: hidden;
-}
+} */
 
+/* Commented out scanline animation to fix shifting issue
 .scanline::after {
   content: "";
   position: absolute;
@@ -70,12 +82,35 @@
   animation: scanline 8s linear infinite;
   pointer-events: none;
   opacity: 0.7;
-  z-index: 2;
+  z-index: 10;
 }
 
 @keyframes scanline {
   0% { top: 0; }
   100% { top: 100%; }
+}
+*/
+
+@media (max-width: 768px) {
+  .scanline::after {
+    opacity: 0.3;
+    height: 1px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scanline::after,
+  .noise::after,
+  .glitch::before,
+  .glitch::after,
+  .digital-distortion::before {
+    animation: none !important;
+  }
+  
+  .blink {
+    animation: none !important;
+    opacity: 1;
+  }
 }
 
 .blink {
@@ -98,18 +133,54 @@
   left: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.05;
+  opacity: 0.1;
   background-image: url("data:image/png;base64,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");
   pointer-events: none;
-  z-index: 0;
+  z-index: 1;
+}
+
+/* Commented out noise animation to fix shifting issue
+.noise::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(255, 255, 255, 0.02) 50%,
+    transparent 100%
+  );
+  animation: noise-scan 8s linear infinite;
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0.3;
+}
+
+@keyframes noise-scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+*/
+
+@media (max-width: 768px) {
+  .noise::before {
+    opacity: 0.06;
+  }
+  
+  .noise::after {
+    opacity: 0.15;
+  }
 }
 
 .screen-frame {
   position: relative;
-  background-color: hsl(var(--color-paper));
+  background-color: rgba(0, 0, 0, 0.4);
   box-shadow: 
-    inset 0 0 15px rgba(0,0,0,0.3),
-    0 2px 5px rgba(0,0,0,0.5);
+    inset 0 0 15px rgba(0,0,0,0.5),
+    0 0 10px rgba(255,0,255,0.2);
   overflow: hidden;
   border: 4px solid #222;
   border-radius: 4px;
@@ -125,7 +196,7 @@
   background: radial-gradient(
     ellipse at center,
     transparent 60%,
-    rgba(0,0,0,0.2) 100%
+    rgba(0,0,0,0.5) 100%
   );
   pointer-events: none;
   z-index: 1;
@@ -145,10 +216,10 @@
 
 .crt {
   position: relative;
-  background-color: hsl(var(--color-paper));
+  background-color: rgba(0, 0, 0, 0.3);
   box-shadow: 
-    inset 0 0 10px rgba(0,0,0,0.3),
-    0 0 15px rgba(0,0,0,0.5);
+    inset 0 0 20px rgba(0, 0, 0, 0.5),
+    0 0 15px rgba(255, 0, 255, 0.2);
   overflow: hidden;
   border-radius: 4px;
 }
@@ -163,7 +234,7 @@
   background: radial-gradient(
     ellipse at center,
     transparent 50%,
-    rgba(0,0,0,0.15) 100%
+    rgba(0,0,0,0.3) 100%
   );
   pointer-events: none;
   z-index: 1;
@@ -178,8 +249,8 @@
   height: 100%;
   background: repeating-linear-gradient(
     0deg,
-    rgba(0, 0, 0, 0.15),
-    rgba(0, 0, 0, 0.15) 1px,
+    rgba(0, 0, 0, 0.2),
+    rgba(0, 0, 0, 0.2) 1px,
     transparent 1px,
     transparent 2px
   );
@@ -193,7 +264,7 @@
 
 .hover-lift:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 6px 12px -2px rgba(0, 0, 0, 0.3);
 }
 
 .focus-ring:focus {
@@ -202,9 +273,89 @@
 }
 
 .retro-glow {
-  text-shadow: 0 0 10px hsla(var(--color-accent), 0.5);
+  text-shadow: 
+    0 0 10px hsla(var(--color-accent), 0.7),
+    0 0 20px hsla(var(--color-accent), 0.5);
 }
 
 .hover-glow:hover {
-  text-shadow: 0 0 8px hsla(var(--color-accent), 0.7);
+  text-shadow: 
+    0 0 10px hsla(var(--color-accent), 0.8),
+    0 0 20px hsla(var(--color-accent), 0.6),
+    0 0 30px hsla(var(--color-accent), 0.4);
+}
+
+/* Text effect utilities */
+.text-flicker {
+  animation: text-flicker 3s linear infinite;
+}
+
+@keyframes text-flicker {
+  0%, 19.999%, 22%, 62.999%, 64%, 64.999%, 70%, 100% {
+    opacity: 1;
+  }
+  20%, 21.999%, 63%, 63.999%, 65%, 69.999% {
+    opacity: 0.4;
+  }
+}
+
+.digital-distortion {
+  display: inline-block;
+  position: relative;
+  overflow: hidden;
+}
+
+.digital-distortion::before {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  text-shadow: 1px 0 hsl(var(--color-glitch));
+  overflow: hidden;
+  clip: rect(0, 900px, 0, 0);
+  animation: digital-noise-1 3s infinite linear alternate-reverse;
+}
+
+@keyframes digital-noise-1 {
+  0% {
+    clip: rect(23px, 9999px, 56px, 0);
+  }
+  20% {
+    clip: rect(41px, 9999px, 12px, 0);
+  }
+  40% {
+    clip: rect(56px, 9999px, 78px, 0);
+  }
+  60% {
+    clip: rect(12px, 9999px, 30px, 0);
+  }
+  80% {
+    clip: rect(67px, 9999px, 32px, 0);
+  }
+  100% {
+    clip: rect(23px, 9999px, 56px, 0);
+  }
+}
+
+@keyframes subtitle-pulse {
+  0% { 
+    opacity: 0.9;
+    transform: scale(1);
+    border-left-color: hsla(var(--color-accent), 0.7);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 10px hsla(var(--color-accent), 0.7), 0 0 20px hsla(var(--color-accent), 0.4);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.01);
+    border-left-color: hsla(var(--color-glitch), 0.9);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4), 0 0 30px hsla(var(--color-glitch), 0.2);
+    text-shadow: 0 0 15px hsla(var(--color-glitch), 0.8), 0 0 25px hsla(var(--color-accent), 0.5);
+  }
+  100% { 
+    opacity: 0.9;
+    transform: scale(1);
+    border-left-color: hsla(var(--color-accent), 0.7);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    text-shadow: 0 0 10px hsla(var(--color-accent), 0.7), 0 0 20px hsla(var(--color-accent), 0.4);
+  }
 }

@@ -1,30 +1,89 @@
 @import "tailwindcss/preflight";
 @import "tailwindcss/utilities";
+@import "./utility.css";
 @import "./typography.css";
+@import "./components.css";
 @import "./effects.css";
 @import "./bbs.css";
+@import "./section-styles.css";
 
 @theme {
+  /* Base Colors */
   --color-black: 0 0% 0%;
   --color-white: 0 0% 100%;
   --color-paper: 40 30% 95%;
   --color-ink: 240 10% 10%;
-  --color-accent: 355 80% 60%;
-  --color-secondary: 205 80% 40%;
-  --color-terminal: 120 63% 31%;
-  --color-glitch: 300 100% 50%;
+  --color-accent: 355 80% 65%;
+  --color-secondary: 205 80% 65%;
+  --color-terminal: 120 63% 50%;
+  --color-glitch: 300 100% 65%;
+  --color-background: 233 20% 12%;
   
-  --font-retro: 'Courier Prime', monospace;
-  --font-display: 'Cormorant Garamond', serif;
-  --font-zine: 'Inter', sans-serif;
+  /* Section colors - each with distinct character but readable */
+  --color-preface-bg: 220 15% 10%;
+  --color-preface-accent: 355 80% 60%;
+  
+  --color-prologue-bg: 240 15% 11%;
+  --color-prologue-accent: 205 80% 60%;
+  
+  --color-sutra-bg: 260 15% 12%;
+  --color-sutra-accent: 300 100% 60%;
+  
+  --color-manifesto-bg: 340 15% 13%;
+  --color-manifesto-accent: 30 85% 60%;
+  
+  --color-glitch-bg: 180 20% 10%;
+  --color-glitch-accent: 180 100% 65%;
+  
+  --color-epilogue-bg: 290 15% 11%;
+  --color-epilogue-accent: 290 80% 70%;
+  
+  /* Voice colors - enhanced for readability */
+  --color-voice-first: 355 80% 65%;
+  --color-voice-second: 205 80% 65%;
+  --color-voice-glitch: 300 100% 65%;
+  --color-muted: 220 15% 75%;
+  
+  /* Bracket dialog colors */
+  --color-bracket-single: 45 90% 65%;
+  --color-bracket-double: 180 90% 65%;
+  
+  /* Fonts - ensuring readability */
+  --font-mono: 'IBM Plex Mono', 'Fira Code', 'Space Mono', monospace;
+  --font-heading: 'Major Mono Display', 'VT323', monospace;
+  --font-body: 'Space Mono', 'IBM Plex Mono', monospace;
+  --font-alt-serif: 'Playfair Display', 'Libre Baskerville', serif;
+  --font-glitch: 'VT323', 'Special Elite', monospace;
+  --font-retro: 'Special Elite', 'Recursive', monospace;
+  
+  /* Borders & Shadows - enhanced for retro feel */
+  --border-thin: 1px;
+  --border-thick: 4px;
+  --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3), 0 0 15px rgba(255, 0, 255, 0.2);
+  --sidebar-width: 280px;
+  
+  /* Section specific glows */
+  --glow-preface: 0 0 15px rgba(255, 60, 100, 0.2);
+  --glow-prologue: 0 0 15px rgba(60, 130, 255, 0.2);
+  --glow-sutra: 0 0 15px rgba(200, 60, 255, 0.2);
+  --glow-manifesto: 0 0 15px rgba(255, 150, 60, 0.2);
+  --glow-glitch: 0 0 15px rgba(60, 255, 255, 0.2);
+  --glow-epilogue: 0 0 15px rgba(180, 60, 255, 0.2);
 }
 
 /* Base Styles */
 body {
-  line-height: 1.6;
+  line-height: 1.7;
   overflow-x: hidden;
   background-color: hsl(var(--color-background));
-  color: hsl(var(--color-ink));
+  color: hsl(var(--color-white));
+  font-family: var(--font-body);
+  font-size: 1rem;
+  letter-spacing: 0.01em;
+  max-width: 100vw;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* Layout Components */
@@ -35,61 +94,224 @@ body {
   left: 0;
   height: 100vh;
   overflow-y: auto;
-  background-color: hsl(var(--color-paper));
+  background-color: rgba(0, 0, 0, 0.9);
   border-right: var(--border-thick) solid hsl(var(--color-accent));
   padding: 1.5rem;
   z-index: 50;
   box-shadow: var(--box-shadow);
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0),
+      rgba(0, 0, 0, 0) 2px,
+      rgba(255, 255, 255, 0.02) 2px,
+      rgba(255, 255, 255, 0.02) 4px
+    );
+  pointer-events: none;
+  z-index: -1;
+}
+
+.sidebar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 0, 100, 0.1),
+    rgba(0, 100, 255, 0.1)
+  );
+  opacity: 0.05;
+  pointer-events: none;
+  z-index: -1;
 }
 
 .main-content {
   margin-left: var(--sidebar-width);
-  padding: 2rem;
+  padding: 3rem 3rem 5rem;
   min-height: 100vh;
   position: relative;
   z-index: 10;
   background-color: hsl(var(--color-background));
   width: calc(100% - var(--sidebar-width));
+  max-width: 100%;
 }
 
 .zine-section {
   margin-bottom: 5rem;
-  padding: 2rem;
-  border-left: var(--border-thick) solid hsl(var(--color-accent));
+  padding: 2.5rem;
+  border-left: var(--border-thick) solid transparent;
   position: relative;
   box-shadow: var(--box-shadow);
   position: relative;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 4px;
+  color: rgba(255, 255, 255, 0.95);
+  max-width: 100%;
+  overflow-wrap: break-word;
+  hyphens: auto;
+  z-index: 1;
 }
 
 /* Section-specific styling */
 #preface {
   background-color: hsl(var(--color-preface-bg));
   border-color: hsl(var(--color-preface-accent));
+  box-shadow: var(--glow-preface);
+}
+
+#preface::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at top right,
+    rgba(255, 60, 100, 0.1),
+    transparent 70%
+  );
+  z-index: -1;
+  pointer-events: none;
 }
 
 #prologue {
   background-color: hsl(var(--color-prologue-bg));
   border-color: hsl(var(--color-prologue-accent));
+  box-shadow: var(--glow-prologue);
+}
+
+#prologue::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(60, 130, 255, 0.1),
+    transparent 80%
+  );
+  z-index: -1;
+  pointer-events: none;
 }
 
 #sutra {
   background-color: hsl(var(--color-sutra-bg));
   border-color: hsl(var(--color-sutra-accent));
+  box-shadow: var(--glow-sutra);
+}
+
+#sutra::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    repeating-linear-gradient(
+      0deg,
+      rgba(200, 60, 255, 0.05),
+      rgba(200, 60, 255, 0.05) 2px,
+      transparent 2px,
+      transparent 4px
+    );
+  z-index: -1;
+  pointer-events: none;
 }
 
 #manifesto {
   background-color: hsl(var(--color-manifesto-bg));
   border-color: hsl(var(--color-manifesto-accent));
+  box-shadow: var(--glow-manifesto);
+}
+
+#manifesto::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(
+      90deg,
+      rgba(255, 150, 60, 0.08),
+      transparent 50%,
+      rgba(255, 150, 60, 0.08) 100%
+    );
+  z-index: -1;
+  pointer-events: none;
 }
 
 #glitch {
   background-color: hsl(var(--color-glitch-bg));
   border-color: hsl(var(--color-glitch-accent));
+  box-shadow: var(--glow-glitch);
+  position: relative;
+  overflow: hidden;
+}
+
+#glitch::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    linear-gradient(
+      180deg,
+      transparent 0%,
+      rgba(60, 255, 255, 0.05) 50%,
+      transparent 100%
+    );
+  /* animation: glitch-section-scan 10s linear infinite; */
+  z-index: -1;
+  pointer-events: none;
+}
+
+@keyframes glitch-section-scan {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
 }
 
 #epilogue {
   background-color: hsl(var(--color-epilogue-bg));
   border-color: hsl(var(--color-epilogue-accent));
+  box-shadow: var(--glow-epilogue);
+}
+
+#epilogue::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at bottom left,
+    rgba(180, 60, 255, 0.1),
+    transparent 70%
+  );
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* Narrator voice styles */
@@ -106,23 +328,105 @@ body {
   font-style: italic;
 }
 
-/* Navigation */
+/* Navigation - retro terminal style */
 .zine-nav-link {
   display: block;
   padding: 0.75rem 1rem;
-  margin-bottom: 0.5rem;
-  color: hsl(var(--color-ink));
+  margin-bottom: 0.75rem;
+  color: hsl(var(--color-white));
   font-family: var(--font-mono);
-  border-bottom: var(--border-thin) solid transparent;
+  border-left: var(--border-thin) solid transparent;
   transition: all 0.2s ease;
   text-decoration: none;
+  position: relative;
+  overflow: hidden;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.8);
+  background-color: rgba(0, 0, 0, 0.3);
+  border-radius: 2px;
+  letter-spacing: 0.05em;
+  font-size: 1rem;
+}
+
+.zine-nav-link .text-accent {
+  display: inline-block;
+  width: 2.5rem;
+  color: hsl(var(--color-accent));
+  transition: all 0.2s ease;
 }
 
 .zine-nav-link:hover,
 .zine-nav-link:focus {
-  border-bottom-color: hsl(var(--color-accent));
+  border-left-color: hsl(var(--color-accent));
+  color: hsl(var(--color-white));
+  background-color: rgba(0, 0, 0, 0.5);
+  text-shadow: 0 0 8px hsl(var(--color-accent));
+  transform: translateX(5px);
+}
+
+.zine-nav-link:hover .text-accent,
+.zine-nav-link:focus .text-accent {
+  color: hsl(var(--color-glitch));
+  text-shadow: 0 0 8px hsl(var(--color-glitch));
+}
+
+.zine-nav-link::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 3px;
+  background-color: transparent;
+  transition: all 0.2s ease;
+}
+
+.zine-nav-link:hover::before {
+  background-color: hsl(var(--color-accent));
+  box-shadow: 0 0 8px hsl(var(--color-accent));
+}
+
+.zine-nav-link:hover::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    hsla(var(--color-accent), 0.1) 50%,
+    transparent 100%
+  );
+  animation: nav-glitch 1s ease forwards;
+  z-index: 1;
+  pointer-events: none;
+}
+
+@keyframes nav-glitch {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+/* Active navigation link */
+.zine-nav-link.active {
+  border-left-color: hsl(var(--color-accent));
+  background-color: rgba(0, 0, 0, 0.5);
   color: hsl(var(--color-accent));
-  background-color: hsla(var(--color-ink), 0.05);
+  text-shadow: 0 0 5px hsl(var(--color-accent));
+}
+
+.zine-nav-link.active::before {
+  background-color: hsl(var(--color-accent));
+  box-shadow: 0 0 8px hsl(var(--color-accent));
+}
+
+/* ASCII art styling */
+.ascii-art {
+  font-size: 0.7rem;
+  opacity: 0.8;
+  color: hsl(var(--color-accent));
+  text-shadow: 0 0 5px hsla(var(--color-accent), 0.5);
 }
 
 /* Responsive Design */
@@ -130,6 +434,9 @@ body {
   .sidebar {
     transform: translateX(-100%);
     transition: transform 0.3s ease;
+    width: 260px;
+    box-shadow: 2px 0 15px rgba(0, 0, 0, 0.5);
+    z-index: 100;
   }
   
   .sidebar.open {
@@ -138,12 +445,78 @@ body {
   
   .main-content {
     margin-left: 0;
-    padding: 1rem;
+    padding: 1.5rem;
     width: 100%;
   }
 
   .zine-section {
     padding: 1.5rem;
     margin-bottom: 3rem;
+  }
+  
+  .zine-heading {
+    font-size: 2rem;
+    padding-right: 1rem;
+  }
+  
+  p {
+    max-width: 100%;
+  }
+  
+  .glitch::before,
+  .glitch::after {
+    content: none; /* Hide glitch effect pseudo-elements on mobile for better performance */
+  }
+  
+  /* Add a semi-transparent overlay when sidebar is open */
+  .sidebar.open + .main-content::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 50;
+    animation: fade-in 0.3s ease;
+  }
+  
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Adjust font sizes for better readability on mobile */
+  body {
+    font-size: 0.95rem;
+  }
+  
+  /* Make section-specific gradients less intense on mobile */
+  #preface::before,
+  #prologue::before,
+  #sutra::before,
+  #manifesto::before,
+  #glitch::before,
+  #epilogue::before {
+    opacity: 0.7;
+  }
+  
+  /* Make speaker styles more distinct on smaller screens */
+  .speaker-single,
+  .speaker-double {
+    margin: 1rem 0;
+    padding: 0.5rem 0.75rem;
+  }
+  
+  /* Ensure mobile menu button is clearly visible */
+  #mobile-menu-toggle {
+    background-color: hsla(var(--color-accent), 0.9);
+    box-shadow: 0 0 10px hsla(var(--color-accent), 0.5);
+    border: 1px solid hsla(var(--color-white), 0.2);
+  }
+  
+  #mobile-menu-toggle:hover,
+  #mobile-menu-toggle:focus {
+    background-color: hsla(var(--color-glitch), 0.9);
   }
 }

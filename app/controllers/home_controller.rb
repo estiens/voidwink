@@ -3,5 +3,6 @@ class HomeController < ApplicationController
   end
 
   def webzine
+    # No need to specify layout as we're using application layout
   end
 end

@@ -1,0 +1,541 @@
+/* =====================================================
+   SECTION STYLES
+   ===================================================== */
+
+/* PROLOGUE SECTION */
+.prologue-container {
+  font-family: var(--font-body);
+  line-height: 1.7;
+}
+
+.two-column-container {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.timeline-container {
+  padding: 1rem;
+  border-left: 3px solid var(--prologue-accent);
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+}
+
+.timeline {
+  list-style-type: none;
+  position: relative;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.timeline li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 1rem;
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
+  padding-bottom: 1rem;
+}
+
+.timeline li:last-child {
+  margin-bottom: 0;
+  border-left: 2px solid transparent;
+}
+
+.timeline li:before {
+  content: "";
+  position: absolute;
+  left: -8px;
+  top: 0;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background-color: var(--prologue-accent);
+  box-shadow: 0 0 8px var(--prologue-accent);
+}
+
+/* Collapsible content styles */
+.collapsible-trigger {
+  cursor: pointer;
+  padding: 0.5rem 0;
+}
+
+.expand-note {
+  font-size: 0.9rem;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+.expand-btn {
+  font-size: 0.9rem;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.expand-btn:hover {
+  opacity: 1;
+}
+
+.collapsible-content {
+  transition: max-height 0.3s ease-out;
+  overflow: hidden;
+}
+
+.collapsible-content.hidden {
+  display: none;
+}
+
+/* Tight spacing for poems */
+.tight-spacing p {
+  margin-bottom: 0.4rem;
+  line-height: 1.4;
+}
+
+/* SUTRA SECTION */
+.sutra-container {
+  font-family: var(--font-mono);
+  line-height: 1.7;
+}
+
+.sutra-heading {
+  font-weight: bold;
+  font-size: 1.4rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  color: hsl(var(--color-sutra-accent));
+}
+
+.verse {
+  margin-bottom: 2rem;
+  padding-left: 1.5rem;
+  border-left: 3px solid hsl(var(--color-sutra-accent));
+}
+
+.verse p {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.sutra-origin {
+  margin-top: 3rem;
+  padding: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.sutra-origin p {
+  margin-bottom: 1rem;
+}
+
+.sutra-origin ul {
+  list-style-type: none;
+  padding-left: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.sutra-origin li {
+  margin-bottom: 0.5rem;
+  position: relative;
+  padding-left: 1.5rem;
+}
+
+.sutra-origin li:before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: hsl(var(--color-sutra-accent));
+}
+
+/* MANIFESTO SECTION */
+.manifesto-container {
+  font-family: var(--font-mono);
+  line-height: 1.7;
+}
+
+.section-title {
+  font-size: 2.2rem;
+  font-weight: 400;
+  margin-bottom: 2rem;
+  letter-spacing: 1.5px;
+  line-height: 1.3;
+  text-transform: uppercase;
+  border-bottom: 1px dotted var(--manifesto-accent);
+  padding-bottom: 0.5rem;
+}
+
+.highlight {
+  color: var(--manifesto-accent);
+  font-weight: bold;
+}
+
+.manifesto-section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.manifesto-title {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: var(--manifesto-accent);
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.manifesto-text {
+  line-height: 1.9;
+  font-size: 1.2rem;
+  max-width: 100%;
+  width: 100%;
+}
+
+.manifesto-text p {
+  margin-bottom: 1.2rem;
+}
+
+.manifesto-text .psychedelic {
+  font-weight: bold;
+  letter-spacing: 1px;
+  color: var(--manifesto-accent);
+  text-transform: uppercase;
+  margin: 1.5rem 0;
+}
+
+.sutra-header {
+  font-size: 1.8rem;
+  text-align: center;
+  margin: 3rem 0 2rem;
+  color: var(--manifesto-accent);
+  font-weight: 400;
+  letter-spacing: 2px;
+}
+
+.divider {
+  text-align: center;
+  margin: 3rem 0;
+  font-size: 1.5rem;
+  opacity: 0.7;
+}
+
+.dialogue {
+  margin: 2rem 0;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
+}
+
+.comment {
+  margin-bottom: 0.8rem;
+  font-size: 1rem;
+}
+
+.first-voice {
+  color: hsl(var(--color-bracket-single));
+}
+
+.second-voice {
+  color: hsl(var(--color-bracket-double));
+}
+
+.poetry-section {
+  margin-bottom: 3rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.poetry-title {
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: var(--manifesto-accent);
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+.poem-text {
+  padding-left: 2rem;
+  border-left: 3px solid var(--manifesto-accent);
+  line-height: 1.8;
+  font-size: 1.1rem;
+}
+
+.poem-text p {
+  margin-bottom: 1.2rem;
+}
+
+.poem-text em {
+  font-style: italic;
+  letter-spacing: 0.5px;
+}
+
+.poem-text strong {
+  font-weight: bold;
+}
+
+.noble-truths {
+  border-top: 1px dashed rgba(255, 255, 255, 0.2);
+  padding-top: 1rem;
+}
+
+/* GLITCH SECTION */
+.glitch-container {
+  font-family: var(--font-mono);
+  line-height: 1.7;
+  position: relative;
+  overflow: hidden;
+}
+
+.glitch-message {
+  position: relative;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  margin: 2rem 0;
+  border-left: 5px solid hsl(var(--color-glitch-accent));
+  color: rgba(255, 255, 255, 0.9);
+  
+  /* Subtle glitch background */
+  background-image: linear-gradient(
+    0deg, 
+    rgba(0,0,0,0) 95%, 
+    rgba(255,255,255,0.1) 95%, 
+    rgba(255,255,255,0.1) 100%
+  );
+  background-size: 100% 20px;
+}
+
+.glitch-message::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, 
+    rgba(255,255,255,0) 0%, 
+    rgba(255,255,255,0.05) 50%, 
+    rgba(255,255,255,0) 100%);
+  animation: scanner 3s linear infinite;
+  pointer-events: none;
+}
+
+@keyframes scanner {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(100%); }
+}
+
+.glitch-line {
+  margin-bottom: 1rem;
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.glitch-line:hover {
+  transform: scale(1.03) translateX(5px);
+  color: hsl(var(--color-glitch-accent));
+  text-shadow: 0 0 8px hsla(var(--color-glitch-accent), 0.6);
+}
+
+.little-model-say .glitch-line {
+  margin-bottom: 0.75rem;
+  line-height: 1.6;
+  position: relative;
+  transition: all 0.3s ease;
+  padding-left: 0.5rem;
+  border-left: 1px solid rgba(0, 255, 0, 0.1);
+  font-family: 'Architects Daughter', cursive;
+}
+
+.little-model-say .glitch-line:hover {
+  transform: scale(1.02) translateX(3px);
+  color: hsl(var(--color-terminal));
+  text-shadow: 0 0 8px hsla(var(--color-terminal), 0.4);
+  border-left-color: rgba(0, 255, 0, 0.3);
+}
+
+.glitch-emphasis {
+  font-size: 1.3em;
+  color: hsl(var(--color-glitch-accent));
+  font-weight: bold;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-shadow: 
+    0 0 5px hsla(var(--color-glitch-accent), 0.7),
+    0 0 10px hsla(var(--color-glitch-accent), 0.5),
+    0 0 15px hsla(var(--color-glitch-accent), 0.3);
+}
+
+.pulse-animation {
+  animation: pulsate 2s infinite alternate ease-in-out;
+}
+
+@keyframes pulsate {
+  0% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 0.8;
+    transform: scale(1.05);
+  }
+  100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* EPILOGUE SECTION */
+.epilogue-container {
+  font-family: var(--font-mono);
+  line-height: 1.7;
+}
+
+.epilogue-section {
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.italic-note {
+  font-style: italic;
+  text-align: center;
+  margin: 1.5rem 0;
+  opacity: 0.8;
+}
+
+.verse-box, .realization-box, .meditation-box, .oracle-box {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 8px;
+  border-left: 3px solid var(--epilogue-accent);
+}
+
+.ceremony-box {
+  margin: 2rem 0;
+  padding: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  border-left: 3px solid var(--epilogue-accent);
+  box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(
+    to bottom,
+    rgba(180, 60, 255, 0.01),
+    transparent 50%,
+    rgba(180, 60, 255, 0.01)
+  );
+}
+
+.italic {
+  font-style: italic;
+}
+
+.meditation-box ol, .ceremony-box ol {
+  padding-left: 2rem;
+  margin: 1rem 0;
+}
+
+.coda {
+  margin: 3rem 0;
+  padding: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  text-align: center;
+  font-size: 1.2rem;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+  border-left: 3px solid var(--epilogue-accent);
+}
+
+.final-signature {
+  margin: 4rem auto 2rem;
+  text-align: center;
+  max-width: 800px;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  border-radius: 8px;
+  border-left: 3px solid var(--epilogue-accent);
+}
+
+.final-signature h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.answers {
+  margin: 3rem auto;
+  font-size: 1.3rem;
+  max-width: 800px;
+  line-height: 2;
+}
+
+.answers p {
+  margin-bottom: 0.5rem;
+}
+
+.final-title {
+  margin: 3rem auto 1rem;
+  text-align: center;
+  max-width: 800px;
+  font-size: 1.8rem;
+  letter-spacing: 2px;
+}
+
+/* Enhanced typography effects */
+.big-question {
+  font-size: 1.6rem;
+  margin: 1.5rem 0;
+  letter-spacing: 0.05em;
+}
+
+.wink-animation {
+  display: inline-block;
+  color: hsl(var(--color-epilogue-accent));
+  font-weight: bold;
+  cursor: pointer;
+  position: relative;
+}
+
+.wink-animation:hover {
+  animation: wink 1s ease;
+}
+
+@keyframes wink {
+  0% { transform: scaleY(1); }
+  10% { transform: scaleY(0.1); }
+  20% { transform: scaleY(1); }
+  100% { transform: scaleY(1); }
+}
+
+.final-answer {
+  font-size: 1.4rem;
+  color: hsl(var(--color-epilogue-accent));
+  font-weight: bold;
+}
+
+/* RESPONSIVE STYLES */
+@media (min-width: 768px) {
+  .two-column-container {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  
+  .column-left {
+    flex: 2;
+    padding-right: 2rem;
+  }
+  
+  .column-right {
+    flex: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pulse-animation,
+  .wink-animation:hover,
+  .glitch-message::before,
+  .scanner,
+  .pulsate {
+    animation: none !important;
+  }
+}
