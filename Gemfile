@@ -51,13 +51,12 @@ group :development, :test do
 
   # Omakase Ruby styling [https://github.com/rails/rubocop-rails-omakase/]
   gem "rubocop-rails-omakase", require: false
+  gem "factory_bot_rails", "~> 6.4"
+
+  gem "rspec-rails", "~> 7.1"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 end
-
-gem "factory_bot", "~> 6.5"
-
-gem "rspec-rails", "~> 7.1"

@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   root "home#webzine"
 
   get "zine" => "zine#index"
+  get "stats", to: "stats#index"
 end
