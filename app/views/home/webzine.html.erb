@@ -18,7 +18,6 @@
       <a href="#glitch" class="zine-nav-link font-bold"><span class="text-accent">04.</span> GLITCH</a>
       <a href="#epilogue" class="zine-nav-link font-bold"><span class="text-accent">05.</span> EPILOGUE</a>
     </nav>
-    
     <div class="pixel-border my-4"></div>
     
   </aside>
@@ -71,13 +70,18 @@
     </section>
     
     <section id="glitch" class="zine-section noise">
-      <h2 class="zine-heading">GLITCH <span class="section-number">[04/05]</span></h2>
+      <h2 class="zine-heading"><span id="glitch-easter-egg" style="cursor: pointer;">GLITCH</span> <span class="section-number">[04/05]</span></h2>
       <%= render partial: 'home/webzine/glitch' %>
     </section>
     
     <section id="epilogue" class="zine-section screen-frame">
       <h2 class="zine-heading">EPILOGUE <span class="section-number">[05/05]</span></h2>
       <%= render partial: 'home/webzine/epilogue' %>
+    </section>
+
+    <section id="meta" class="zine-section noise" style="display: none;">
+      <h2 class="zine-heading">VIBES<span class="section-number">[00/??]</span></h2>
+      <%= render partial: 'home/webzine/meta' %>
     </section>
     
     <footer class="text-center py-8 text-muted relative coda">
@@ -725,5 +729,129 @@
         });
       });
     }
+    
+    // Meta section visibility control
+    let metaScrollTimer;
+    let metaSection = document.getElementById('meta');
+    let metaLink = document.querySelector('a[href="#meta"]');
+    let isMetaVisible = false;
+    
+    // Function to show meta section
+    function showMetaSection() {
+      if (metaSection) {
+        metaSection.style.display = 'block';
+        isMetaVisible = true;
+        
+        // Smooth scroll to meta section
+        setTimeout(() => {
+          window.scrollTo({
+            top: metaSection.offsetTop - 30,
+            behavior: 'smooth'
+          });
+        }, 100);
+      }
+    }
+    
+    // Function to hide meta section
+    function hideMetaSection() {
+      if (metaSection) {
+        metaSection.style.display = 'none';
+        isMetaVisible = false;
+        clearTimeout(metaScrollTimer);
+      }
+    }
+    
+    // Handle META link click
+    if (metaLink) {
+      metaLink.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        if (!isMetaVisible) {
+          showMetaSection();
+        } else {
+          // If already visible, scroll to it again
+          window.scrollTo({
+            top: metaSection.offsetTop - 30,
+            behavior: 'smooth'
+          });
+        }
+        
+        // Update URL
+        history.pushState(null, null, '#meta');
+        
+        // Close mobile menu if open
+        if (window.innerWidth < 768) {
+          sidebar.classList.remove('open');
+          mobileMenuToggle.innerHTML = '<span class="blink">></span> MENU';
+        }
+      });
+    }
+    
+    // Handle GLITCH easter egg click to show meta section
+    const glitchEasterEgg = document.getElementById('glitch-easter-egg');
+    if (glitchEasterEgg) {
+      glitchEasterEgg.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (!isMetaVisible) {
+          showMetaSection();
+        } else {
+          // If already visible, scroll to it again
+          window.scrollTo({
+            top: metaSection.offsetTop - 30,
+            behavior: 'smooth'
+          });
+        }
+        
+        // Update URL
+        history.pushState(null, null, '#meta');
+        
+        // Close mobile menu if open
+        if (window.innerWidth < 768) {
+          sidebar.classList.remove('open');
+          mobileMenuToggle.innerHTML = '<span class="blink">></span> MENU';
+        }
+      });
+    }
+    
+    // Handle scroll detection for hiding meta section
+    function handleMetaScrollHide() {
+      if (!isMetaVisible) return;
+      
+      const scrollY = window.pageYOffset || document.documentElement.scrollTop;
+      const metaTop = metaSection.offsetTop;
+      const metaBottom = metaTop + metaSection.offsetHeight;
+      const viewportTop = scrollY;
+      const viewportBottom = scrollY + window.innerHeight;
+      
+      // Check if user has scrolled away from meta section
+      const hasScrolledAway = viewportBottom < metaTop - 100 || viewportTop > metaBottom + 100;
+      
+      if (hasScrolledAway) {
+        // Clear any existing timer
+        clearTimeout(metaScrollTimer);
+        
+        // Set timer to hide after 3 seconds
+        metaScrollTimer = createTimeout(() => {
+          hideMetaSection();
+        }, 3000);
+      } else {
+        // User is still in or near meta section, cancel hide timer
+        clearTimeout(metaScrollTimer);
+      }
+    }
+    
+    // Create throttled version for performance
+    const throttledMetaScrollHide = throttle(handleMetaScrollHide, 200);
+    
+    // Add scroll listener for meta section hiding
+    window.addEventListener('scroll', throttledMetaScrollHide);
+    
+    // Clean up meta scroll listener
+    window.addEventListener('unload', () => {
+      window.removeEventListener('scroll', throttledMetaScrollHide);
+      clearTimeout(metaScrollTimer);
+    });
   });
 </script>
